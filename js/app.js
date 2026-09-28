@@ -1,10 +1,10 @@
 /* ==========================================================
-   DONNÉES — infos de stage (Activités 1 et 3 du sujet)
+   DONNÉES : infos de stage (Activités 1 et 3 du sujet)
    ========================================================== */
 
 const stage = {
     entreprise: "L'Artocarpe",
-    secteur: "Association culturelle – art contemporain",
+    secteur: "Association culturelle spécialisée en art contemporain",
     lieu: "Le Moule, Guadeloupe",
     periode: "1er - 30 juin 2026",
     poste: "Stagiaire communication digitale et contenu web"
@@ -15,31 +15,36 @@ const missions = [
         titre: "Création de flyers et affiches événementielles",
         categorie: "Communication / Design",
         description: "Conception de flyers et d'affiches pour les événements de différents clients de l'association, en utilisant exclusivement Canva (contrainte imposée par la structure).",
-        outils: ["Canva"]
+        outils: ["Canva"],
+        competence: "Exprimer un message avec les médias numériques pour informer et communiquer"
     },
     {
         titre: "Montage de vidéos de témoignages",
         categorie: "Vidéo",
         description: "Montage de vidéos de témoignages et de retours d'expérience de participants aux formations et résidences d'artistes organisées par l'Artocarpe.",
-        outils: ["Canva"]
+        outils: ["Canva"],
+        competence: "Exprimer un message avec les médias numériques pour informer et communiquer"
     },
     {
         titre: "Conception d'un questionnaire d'enquête",
         categorie: "Communication",
         description: "Création d'un Google Form pour recueillir l'avis et l'intérêt du public pour l'art contemporain, en vue du salon Pool Art Fair.",
-        outils: ["Google Forms"]
+        outils: ["Google Forms"],
+        competence: "Comprendre les écosystèmes, les besoins des utilisateurs et les dispositifs de communication numérique"
     },
     {
         titre: "Enquête terrain au salon Pool Art Fair",
         categorie: "Communication",
         description: "Rencontre avec des artistes exposants pour recueillir leur avis sur l'art contemporain et évaluer leur intérêt, réponses consignées via le formulaire créé.",
-        outils: ["Google Forms"]
+        outils: ["Google Forms"],
+        competence: "Comprendre les écosystèmes, les besoins des utilisateurs et les dispositifs de communication numérique"
     },
     {
         titre: "Création et animation d'un canal WhatsApp",
         categorie: "Communication digitale",
         description: "Création d'un canal WhatsApp pour tenir informées les personnes intéressées rencontrées lors des salons, des événements et expositions de l'Artocarpe.",
-        outils: ["WhatsApp"]
+        outils: ["WhatsApp"],
+        competence: "Concevoir ou co-concevoir une réponse stratégique pertinente à une problématique complexe"
     }
 ];
 
@@ -56,7 +61,7 @@ const outilsGeneraux = [
 ];
 
 /* ==========================================================
-   ACTIVITÉ 7 — DÉFIS JAVASCRIPT
+   ACTIVITÉ 7 : DÉFIS JAVASCRIPT
    Regarde le résultat dans la console du navigateur (F12)
    ========================================================== */
 
@@ -98,6 +103,10 @@ function renderMissions(missionsData) {
         description.className = "mission-description";
         description.textContent = mission.description;
 
+        const competence = document.createElement("p");
+        competence.className = "mission-competence";
+        competence.textContent = "Compétence BUT MMI : " + mission.competence;
+
         const outilsListe = document.createElement("ul");
         outilsListe.className = "mission-outils";
         mission.outils.forEach(function (outil) {
@@ -106,7 +115,7 @@ function renderMissions(missionsData) {
             outilsListe.appendChild(item);
         });
 
-        card.append(titre, categorie, description, outilsListe);
+        card.append(titre, categorie, description, competence, outilsListe);
         container.appendChild(card);
     });
 }

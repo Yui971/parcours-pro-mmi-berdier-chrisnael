@@ -31,7 +31,7 @@ body {
     padding: 3rem 1rem 2.5rem;
     text-align: center;
     border-bottom: 1px solid var(--border);
-    background-image: linear-gradient(rgba(13, 13, 17, 0.6), rgba(13, 13, 17, 0.6)), url('../assets/images/header-bg.png');
+    background-image: linear-gradient(rgba(13, 13, 17, 0.4), rgba(13, 13, 17, 0.4)), url('../assets/images/header-bg.webp');
     background-size: cover;
     background-position: center;
 }
@@ -98,7 +98,7 @@ h2 {
     margin: 0;
 }
 
-/* Mes missions — chaque carte a sa propre couleur d'accent (façon magazine :
+/* Mes missions : chaque carte a sa propre couleur d'accent (façon magazine :
    chaque article garde son identité propre dans une mise en page commune) */
 .missions-grid {
     display: grid;
@@ -139,6 +139,13 @@ h2 {
 
 .mission-description {
     color: var(--text-secondary);
+}
+
+.mission-competence {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--card-accent, var(--accent));
+    margin: 0.75rem 0 0;
 }
 
 .mission-outils {
