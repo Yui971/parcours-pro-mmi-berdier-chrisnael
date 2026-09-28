@@ -16,35 +16,35 @@ const missions = [
         categorie: "Communication / Design",
         description: "Conception de flyers et d'affiches pour les événements de différents clients de l'association, en utilisant exclusivement Canva (contrainte imposée par la structure).",
         outils: ["Canva"],
-        competence: "Compétence 3"
+        competence: "AC13.03 · Créer, composer et retoucher des visuels"
     },
     {
         titre: "Montage de vidéos de témoignages",
         categorie: "Vidéo",
         description: "Montage de vidéos de témoignages et de retours d'expérience de participants aux formations et résidences d'artistes organisées par l'Artocarpe.",
         outils: ["Canva"],
-        competence: "Compétence 3"
+        competence: "AC13.04 · Tourner et monter une vidéo"
     },
     {
         titre: "Conception d'un questionnaire d'enquête",
         categorie: "Communication",
         description: "Création d'un Google Form pour recueillir l'avis et l'intérêt du public pour l'art contemporain, en vue du salon Pool Art Fair.",
         outils: ["Google Forms"],
-        competence: "Compétence 1"
+        competence: "AC11.05 · Identifier les cibles"
     },
     {
         titre: "Enquête terrain au salon Pool Art Fair",
         categorie: "Communication",
         description: "Rencontre avec des artistes exposants pour recueillir leur avis sur l'art contemporain et évaluer leur intérêt, réponses consignées via le formulaire créé.",
         outils: ["Google Forms"],
-        competence: "Compétence 1"
+        competence: "AC11.06 · Réaliser des entretiens utilisateurs"
     },
     {
         titre: "Création et animation d'un canal WhatsApp",
         categorie: "Communication digitale",
         description: "Création d'un canal WhatsApp pour tenir informées les personnes intéressées rencontrées lors des salons, des événements et expositions de l'Artocarpe.",
         outils: ["WhatsApp"],
-        competence: "Compétence 2"
+        competence: "AC12.04 · Proposer une stratégie de communication"
     }
 ];
 
