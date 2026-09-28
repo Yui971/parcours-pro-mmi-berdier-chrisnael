@@ -44,7 +44,35 @@ const missions = [
         categorie: "Communication digitale",
         description: "Création d'un canal WhatsApp pour tenir informées les personnes intéressées rencontrées lors des salons, des événements et expositions de l'Artocarpe.",
         outils: ["WhatsApp"],
-        competence: "AC12.04 · Proposer une stratégie de communication"
+        competence: "AC12.04 · Proposer une stratégie de communication",
+        lien: { url: "https://whatsapp.com/channel/0029Vb886UO5a242rR61cv3r", texte: "Voir le canal L'ArtoNews" }
+    }
+];
+
+const realisations = [
+    {
+        type: "image",
+        titre: "Affiche d'exposition Natural Genesis",
+        description: "Flyer pour l'exposition de CHAD (Pierre Chadru) à la GPE Gallery.",
+        src: "assets/images/flyer-natural-genesis.jpg"
+    },
+    {
+        type: "image",
+        titre: "Location de galerie pro",
+        description: "Flyer promotionnel pour la location de la galerie de l'Artocarpe.",
+        src: "assets/images/flyer-location-galerie.jpg"
+    },
+    {
+        type: "video",
+        titre: "Résumé Artocarpe 2K26",
+        description: "Vidéo de présentation des activités de l'association.",
+        youtubeId: "xyRgPzEv4PI"
+    },
+    {
+        type: "video",
+        titre: "Story L'Artocarpe",
+        description: "Format story pour les réseaux sociaux.",
+        youtubeId: "7fjEIpobpXk"
     }
 ];
 
@@ -116,6 +144,58 @@ function renderMissions(missionsData) {
         });
 
         card.append(titre, categorie, description, competence, outilsListe);
+
+        if (mission.lien) {
+            const lien = document.createElement("a");
+            lien.className = "mission-lien";
+            lien.href = mission.lien.url;
+            lien.target = "_blank";
+            lien.rel = "noopener";
+            lien.textContent = mission.lien.texte + " →";
+            card.appendChild(lien);
+        }
+
+        container.appendChild(card);
+    });
+}
+
+function renderRealisations(realisationsData) {
+    const container = document.getElementById("realisations-list");
+
+    realisationsData.forEach(function (realisation) {
+        const card = document.createElement("article");
+        card.className = "realisation-card";
+
+        const thumb = document.createElement("div");
+        thumb.className = "realisation-thumb";
+
+        const image = document.createElement("img");
+        if (realisation.type === "image") {
+            image.src = realisation.src;
+        } else {
+            image.src = `https://img.youtube.com/vi/${realisation.youtubeId}/hqdefault.jpg`;
+        }
+        image.alt = realisation.titre;
+        thumb.appendChild(image);
+
+        if (realisation.type === "video") {
+            const playIcon = document.createElement("span");
+            playIcon.className = "play-icon";
+            playIcon.textContent = "▶";
+            thumb.appendChild(playIcon);
+        }
+
+        thumb.addEventListener("click", function () {
+            ouvrirLightbox(realisation);
+        });
+
+        const titre = document.createElement("h3");
+        titre.textContent = realisation.titre;
+
+        const description = document.createElement("p");
+        description.textContent = realisation.description;
+
+        card.append(thumb, titre, description);
         container.appendChild(card);
     });
 }
@@ -158,6 +238,7 @@ function renderBilan(bilanData) {
 
 renderStage(stage);
 renderMissions(missions);
+renderRealisations(realisations);
 renderOutils(missions, outilsGeneraux);
 renderBilan(bilan);
 
@@ -186,5 +267,53 @@ legalModal.addEventListener("click", function (event) {
 document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && !legalModal.hidden) {
         legalModal.hidden = true;
+    }
+});
+
+/* ==========================================================
+   MODALE "LIGHTBOX" (Mes réalisations)
+   Affiche une image en grand, ou intègre la vidéo YouTube
+   correspondante, selon le type de la réalisation cliquée.
+   ========================================================== */
+
+const lightboxModal = document.getElementById("lightbox-modal");
+const lightboxContent = document.getElementById("lightbox-content");
+const closeLightboxButton = document.getElementById("close-lightbox");
+
+function ouvrirLightbox(realisation) {
+    let contenu;
+
+    if (realisation.type === "image") {
+        contenu = document.createElement("img");
+        contenu.src = realisation.src;
+        contenu.alt = realisation.titre;
+    } else {
+        contenu = document.createElement("iframe");
+        contenu.src = `https://www.youtube.com/embed/${realisation.youtubeId}`;
+        contenu.title = realisation.titre;
+        contenu.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        contenu.allowFullscreen = true;
+    }
+
+    lightboxContent.replaceChildren(contenu);
+    lightboxModal.hidden = false;
+}
+
+function fermerLightbox() {
+    lightboxModal.hidden = true;
+    lightboxContent.replaceChildren();
+}
+
+closeLightboxButton.addEventListener("click", fermerLightbox);
+
+lightboxModal.addEventListener("click", function (event) {
+    if (event.target === lightboxModal) {
+        fermerLightbox();
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !lightboxModal.hidden) {
+        fermerLightbox();
     }
 });

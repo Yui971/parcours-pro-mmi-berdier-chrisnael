@@ -157,6 +157,19 @@ h2 {
     gap: 0.4rem;
 }
 
+.mission-lien {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--card-accent, var(--accent));
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.mission-lien:hover {
+    text-decoration: underline;
+}
+
 .mission-outils li {
     background-color: var(--bg-primary);
     border: 1px solid var(--border);
@@ -164,6 +177,88 @@ h2 {
     padding: 0.2rem 0.6rem;
     font-size: 0.8rem;
     color: var(--text-secondary);
+}
+
+/* Mes réalisations */
+.realisations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.realisation-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.realisation-thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.realisation-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.realisation-thumb:hover img {
+    transform: scale(1.05);
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(13, 13, 17, 0.7);
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+.realisation-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 1rem 1rem 0.25rem;
+}
+
+.realisation-card p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0 1rem 1rem;
+}
+
+.modal--lightbox {
+    max-width: 800px;
+    padding: 1rem;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+}
+
+.lightbox-content iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: var(--radius-sm);
 }
 
 /* Mes outils (liste globale) */
