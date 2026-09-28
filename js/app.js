@@ -16,41 +16,41 @@ const missions = [
         categorie: "Communication / Design",
         description: "Conception de flyers et d'affiches pour les événements de différents clients de l'association, en utilisant exclusivement Canva (contrainte imposée par la structure).",
         outils: ["Canva"],
-        competence: "Exprimer un message avec les médias numériques pour informer et communiquer"
+        competence: "Compétence 3"
     },
     {
         titre: "Montage de vidéos de témoignages",
         categorie: "Vidéo",
         description: "Montage de vidéos de témoignages et de retours d'expérience de participants aux formations et résidences d'artistes organisées par l'Artocarpe.",
         outils: ["Canva"],
-        competence: "Exprimer un message avec les médias numériques pour informer et communiquer"
+        competence: "Compétence 3"
     },
     {
         titre: "Conception d'un questionnaire d'enquête",
         categorie: "Communication",
         description: "Création d'un Google Form pour recueillir l'avis et l'intérêt du public pour l'art contemporain, en vue du salon Pool Art Fair.",
         outils: ["Google Forms"],
-        competence: "Comprendre les écosystèmes, les besoins des utilisateurs et les dispositifs de communication numérique"
+        competence: "Compétence 1"
     },
     {
         titre: "Enquête terrain au salon Pool Art Fair",
         categorie: "Communication",
         description: "Rencontre avec des artistes exposants pour recueillir leur avis sur l'art contemporain et évaluer leur intérêt, réponses consignées via le formulaire créé.",
         outils: ["Google Forms"],
-        competence: "Comprendre les écosystèmes, les besoins des utilisateurs et les dispositifs de communication numérique"
+        competence: "Compétence 1"
     },
     {
         titre: "Création et animation d'un canal WhatsApp",
         categorie: "Communication digitale",
         description: "Création d'un canal WhatsApp pour tenir informées les personnes intéressées rencontrées lors des salons, des événements et expositions de l'Artocarpe.",
         outils: ["WhatsApp"],
-        competence: "Concevoir ou co-concevoir une réponse stratégique pertinente à une problématique complexe"
+        competence: "Compétence 2"
     }
 ];
 
 const bilan = {
     appris: "À m'adapter aux directives du client et surtout à l'avis de mon responsable sur mon propre travail : prendre du recul sur mes réalisations, et transformer une contrainte (comme devoir tout faire uniquement avec Canva) en moteur de créativité.",
-    approfondir: "Ma pluridisciplinarité : je veux devenir un vrai couteau suisse capable de mener un projet de A à Z malgré les contraintes, et rester fier(e) du résultat."
+    approfondir: "Ma pluridisciplinarité : je veux devenir un vrai couteau suisse capable de mener un projet de A à Z malgré les contraintes, et rester fier du résultat."
 };
 
 // Outils utilisés au quotidien pendant le stage, mais pas liés à une mission précise
@@ -105,7 +105,7 @@ function renderMissions(missionsData) {
 
         const competence = document.createElement("p");
         competence.className = "mission-competence";
-        competence.textContent = "Compétence BUT MMI : " + mission.competence;
+        competence.textContent = mission.competence;
 
         const outilsListe = document.createElement("ul");
         outilsListe.className = "mission-outils";
