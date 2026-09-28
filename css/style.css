@@ -40,6 +40,18 @@ body {
     background-position: center;
 }
 
+.mascotte {
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    margin: 0 auto 1.25rem;
+    transform: rotate(-6deg);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
 .kicker {
     display: inline-block;
     font-size: 0.8rem;
