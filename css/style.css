@@ -1,0 +1,310 @@
+:root {
+    --bg-primary: #0d0d11;
+    --bg-card: #17171d;
+    --text-primary: #e8e4de;
+    --text-secondary: #a8a4a0;
+    --accent: #ff7043;
+    --accent-hover: #ff8a65;
+    --border: rgba(255, 255, 255, 0.08);
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-full: 9999px;
+
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+.site-header {
+    padding: 3rem 1rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background-image: linear-gradient(rgba(13, 13, 17, 0.6), rgba(13, 13, 17, 0.6)), url('../assets/images/header-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.kicker {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.site-header h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+}
+
+.tagline {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin: 4rem 0;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Mon stage */
+.stage-info {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.6rem 1.5rem;
+}
+
+.stage-info dt {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.stage-info dd {
+    margin: 0;
+}
+
+/* Mes missions — chaque carte a sa propre couleur d'accent (façon magazine :
+   chaque article garde son identité propre dans une mise en page commune) */
+.missions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.mission-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--card-accent, var(--accent));
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.missions-grid .mission-card:nth-child(5n+1) { --card-accent: #ff7043; }
+.missions-grid .mission-card:nth-child(5n+2) { --card-accent: #5ca0ff; }
+.missions-grid .mission-card:nth-child(5n+3) { --card-accent: #f2669e; }
+.missions-grid .mission-card:nth-child(5n+4) { --card-accent: #f5c24d; }
+.missions-grid .mission-card:nth-child(5n+5) { --card-accent: #4fd1c5; }
+
+.mission-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-top: 0;
+}
+
+.mission-categorie {
+    display: inline-block;
+    color: var(--card-accent, var(--accent));
+    border: 1px solid var(--card-accent, var(--accent));
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.8rem;
+    border-radius: var(--radius-full);
+}
+
+.mission-description {
+    color: var(--text-secondary);
+}
+
+.mission-outils {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.mission-outils li {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Mes outils (liste globale) */
+.outils-list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.9rem 1.5rem;
+}
+
+.outils-list dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.outils-list dd {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/* Mon bilan */
+#bilan p {
+    margin: 0 0 1rem;
+    color: var(--text-secondary);
+}
+
+#bilan strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.footer-link {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.footer-link:hover {
+    color: var(--accent);
+}
+
+.portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.portfolio-link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    fill: currentColor;
+    transition: fill 0.2s;
+}
+
+.portfolio-link:hover {
+    color: var(--accent);
+}
+
+/* Modale mentions légales */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 100;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-overlay:not([hidden]) {
+    display: flex;
+}
+
+.modal {
+    position: relative;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    max-width: 480px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal h3 {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.modal p {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.modal p a {
+    color: var(--accent);
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal__close:hover {
+    color: var(--accent);
+}

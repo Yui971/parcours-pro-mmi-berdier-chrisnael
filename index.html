@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon parcours professionnel MMI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="kicker">BUT MMI — 2E ANNÉE</span>
+        <h1>Parcours professionnel MMI BERDIER CHRISNAEL</h1>
+        <p class="tagline">De mon stage de BUT1 à mon entrée en alternance</p>
+    </header>
+
+    <main>
+
+        <section id="stage" aria-labelledby="stage-heading">
+            <h2 id="stage-heading">Mon stage de BUT1</h2>
+            <dl class="stage-info">
+                <dt>Entreprise</dt>
+                <dd id="stage-entreprise"></dd>
+                <dt>Secteur</dt>
+                <dd id="stage-secteur"></dd>
+                <dt>Période</dt>
+                <dd id="stage-periode"></dd>
+            </dl>
+        </section>
+
+        <section id="missions" aria-labelledby="missions-heading">
+            <h2 id="missions-heading">Mes missions</h2>
+            <div id="missions-list" class="missions-grid">
+                <!-- Rempli dynamiquement par js/app.js -> renderMissions() -->
+            </div>
+        </section>
+
+        <section id="outils" aria-labelledby="outils-heading">
+            <h2 id="outils-heading">Mes outils</h2>
+            <dl id="outils-list" class="outils-list">
+                <!-- Rempli dynamiquement par js/app.js -> renderOutils() -->
+            </dl>
+        </section>
+
+        <section id="bilan" aria-labelledby="bilan-heading">
+            <h2 id="bilan-heading">Mon bilan</h2>
+            <p><strong>Ce que j'ai appris :</strong> <span id="bilan-appris"></span></p>
+            <p><strong>Ce que je souhaite approfondir :</strong> <span id="bilan-approfondir"></span></p>
+        </section>
+
+    </main>
+
+            <footer class="site-footer">
+        <p>Projet R3.12 — BUT MMI 2e année</p>
+        <div class="footer-links">
+            <button class="footer-link" id="open-legal" type="button" aria-haspopup="dialog">Mentions légales</button>
+            <a href="https://chrisnaelberdier.com" target="_blank" rel="noopener" class="portfolio-link">
+                <svg viewBox="0 0 810 810" aria-hidden="true">
+                    <path d="M779.74 554.57c0 30.95-9.67 57.39-29.02 79.31-19.34 21.92-49.86 38.68-91.55 50.28s-95.84 17.41-162.47 17.41c-66.62 0-123.26-5.37-169.89-16.11-46.64-10.74-82.1-28.36-106.39-52.87-24.28-24.5-36.42-57.16-36.42-97.99 0-40.84 12.14-73.61 36.42-98.33 24.29-24.72 59.75-42.55 106.39-53.52 46.63-10.96 103.27-16.44 169.89-16.44 66.63 0 120.57 5.81 161.83 17.41 41.26 11.6 71.56 28.37 90.91 50.28 19.34 21.92 29.23 48.14 29.66 78.66H637.27c-6.88-16.77-22.35-29.77-46.42-39.02-24.07-9.24-55.45-13.86-94.14-13.86-31.37 0-58.67 2.26-81.89 6.78-23.21 4.51-41.15 12.14-53.83 22.89-12.68 10.74-19.01 25.78-19.01 45.12 0 18.91 6.23 33.74 18.69 44.49 12.47 10.74 30.3 18.26 53.52 22.56 23.22 4.31 50.73 6.45 82.53 6.45 38.69 0 70.17-4.62 94.45-13.86 24.29-9.25 39.88-22.47 46.76-39.66z" transform="translate(-22.56,-315.92) scale(0.79) translate(161.44,691.9)"/>
+                    <rect fill="#ff7043" x="730" y="720" width="60" height="60" rx="4"/>
+                </svg>
+                <span>Mon portfolio</span>
+            </a>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-title" hidden>
+        <div class="modal">
+            <button class="modal__close" id="close-legal" type="button" aria-label="Fermer">&times;</button>
+            <h2 id="legal-title">Mentions légales</h2>
+            <h3>Éditeur du site</h3>
+            <p>Ce site est édité par Chrisnaël Berdier, étudiant en BUT MMI (IUT des Antilles), dans le cadre du projet pédagogique R3.12 — « Mon parcours professionnel MMI ». Site à but non commercial.</p>
+            <h3>Hébergement</h3>
+            <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
+            <h3>Données personnelles</h3>
+            <p>Ce site ne collecte aucune donnée personnelle (pas de formulaire, pas de cookie de suivi).</p>
+            <h3>Contact</h3>
+            <p>Via <a href="https://chrisnaelberdier.com">mon portfolio</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>
