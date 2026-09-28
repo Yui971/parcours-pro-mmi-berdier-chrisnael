@@ -1,1 +1,4 @@
 .DS_Store
+
+# Fichiers sources bruts (pas besoin de les publier, la version utilisée est dans assets/images/)
+Mordekaiser*.png

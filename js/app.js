@@ -195,6 +195,13 @@ function renderRealisations(realisationsData) {
 
         container.appendChild(card);
     });
+
+    // La mascotte vient s'installer dans une case vide de la grille
+    const mascotte = document.createElement("img");
+    mascotte.src = "assets/images/mascotte-pointant.png";
+    mascotte.alt = "Ma mascotte pointant du doigt les réalisations ci-dessus, avec une bulle disant Voilà ce que j'ai réalisé !";
+    mascotte.className = "realisations-mascotte";
+    container.appendChild(mascotte);
 }
 
 function renderOutils(missionsData, outilsSupplementaires) {

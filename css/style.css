@@ -283,6 +283,15 @@ h2 {
     margin: 0.6rem 0 0;
 }
 
+.realisations-mascotte {
+    align-self: end;
+    justify-self: center;
+    max-width: 90%;
+    max-height: 260px;
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.5));
+}
+
 .modal--lightbox {
     max-width: 800px;
     padding: 1rem;
