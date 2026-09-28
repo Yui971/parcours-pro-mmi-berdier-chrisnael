@@ -182,6 +182,7 @@ function renderRealisations(realisationsData) {
             const playIcon = document.createElement("span");
             playIcon.className = "play-icon";
             playIcon.textContent = "▶";
+            playIcon.setAttribute("aria-hidden", "true");
             thumb.appendChild(playIcon);
         }
 
@@ -189,8 +190,21 @@ function renderRealisations(realisationsData) {
         titre.textContent = realisation.titre;
 
         card.append(thumb, titre);
+
+        // Rendre la carte utilisable au clavier (Tab pour l'atteindre, Entrée/Espace pour l'ouvrir)
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-haspopup", "dialog");
+        card.setAttribute("aria-label", (realisation.type === "video" ? "Voir la vidéo : " : "Voir en grand : ") + realisation.titre);
+
         card.addEventListener("click", function () {
-            ouvrirLightbox(realisation);
+            ouvrirLightbox(realisation, card);
+        });
+        card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                ouvrirLightbox(realisation, card);
+            }
         });
 
         container.appendChild(card);
@@ -247,6 +261,57 @@ renderOutils(missions, outilsGeneraux);
 renderBilan(bilan);
 
 /* ==========================================================
+   GESTION DU FOCUS POUR LES MODALES (accessibilité clavier)
+   Utilisé par les deux modales ci-dessous : à l'ouverture, le
+   focus part sur le bouton "Fermer" ; à la fermeture, il revient
+   sur l'élément qui a ouvert la modale ; et la touche Tab reste
+   piégée à l'intérieur tant que la modale est ouverte.
+   ========================================================== */
+
+let dernierElementActif = null;
+
+function getElementsFocusables(container) {
+    return Array.from(container.querySelectorAll('button, a[href], [tabindex="0"]'));
+}
+
+function ouvrirModale(modal, declencheur) {
+    dernierElementActif = declencheur;
+    modal.hidden = false;
+    const focusables = getElementsFocusables(modal);
+    if (focusables.length > 0) {
+        focusables[0].focus();
+    }
+}
+
+function fermerModale(modal) {
+    modal.hidden = true;
+    if (dernierElementActif) {
+        dernierElementActif.focus();
+        dernierElementActif = null;
+    }
+}
+
+function piegerFocus(event, modal) {
+    if (event.key !== "Tab") {
+        return;
+    }
+    const focusables = getElementsFocusables(modal);
+    if (focusables.length === 0) {
+        return;
+    }
+    const premier = focusables[0];
+    const dernier = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === premier) {
+        event.preventDefault();
+        dernier.focus();
+    } else if (!event.shiftKey && document.activeElement === dernier) {
+        event.preventDefault();
+        premier.focus();
+    }
+}
+
+/* ==========================================================
    MODALE "MENTIONS LÉGALES"
    ========================================================== */
 
@@ -255,22 +320,26 @@ const openLegalButton = document.getElementById("open-legal");
 const closeLegalButton = document.getElementById("close-legal");
 
 openLegalButton.addEventListener("click", function () {
-    legalModal.hidden = false;
+    ouvrirModale(legalModal, openLegalButton);
 });
 
 closeLegalButton.addEventListener("click", function () {
-    legalModal.hidden = true;
+    fermerModale(legalModal);
 });
 
 legalModal.addEventListener("click", function (event) {
     if (event.target === legalModal) {
-        legalModal.hidden = true;
+        fermerModale(legalModal);
     }
 });
 
 document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !legalModal.hidden) {
-        legalModal.hidden = true;
+    if (!legalModal.hidden) {
+        if (event.key === "Escape") {
+            fermerModale(legalModal);
+        } else {
+            piegerFocus(event, legalModal);
+        }
     }
 });
 
@@ -284,7 +353,7 @@ const lightboxModal = document.getElementById("lightbox-modal");
 const lightboxContent = document.getElementById("lightbox-content");
 const closeLightboxButton = document.getElementById("close-lightbox");
 
-function ouvrirLightbox(realisation) {
+function ouvrirLightbox(realisation, declencheur) {
     let contenu;
 
     if (realisation.type === "image") {
@@ -311,11 +380,11 @@ function ouvrirLightbox(realisation) {
     texte.append(titre, description);
 
     lightboxContent.replaceChildren(contenu, texte);
-    lightboxModal.hidden = false;
+    ouvrirModale(lightboxModal, declencheur);
 }
 
 function fermerLightbox() {
-    lightboxModal.hidden = true;
+    fermerModale(lightboxModal);
     lightboxContent.replaceChildren();
 }
 
@@ -328,7 +397,11 @@ lightboxModal.addEventListener("click", function (event) {
 });
 
 document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !lightboxModal.hidden) {
-        fermerLightbox();
+    if (!lightboxModal.hidden) {
+        if (event.key === "Escape") {
+            fermerLightbox();
+        } else {
+            piegerFocus(event, lightboxModal);
+        }
     }
 });
