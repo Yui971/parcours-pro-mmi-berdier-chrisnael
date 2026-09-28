@@ -13,6 +13,10 @@
 
     --font-display: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
+    --font-caption: 'Caveat', cursive;
+
+    --paper: #f5f2ec;
+    --ink: #0d0d11;
 }
 
 * {
@@ -179,24 +183,58 @@ h2 {
     color: var(--text-secondary);
 }
 
-/* Mes réalisations */
+/* Mes réalisations : cartes façon polaroïd épinglé sur un mur */
 .realisations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2.5rem 2rem;
+    padding-top: 0.75rem;
 }
 
 .realisation-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    position: relative;
+    background-color: var(--paper);
+    border: 3px solid var(--ink);
+    padding: 10px 10px 46px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.realisations-grid .realisation-card:nth-child(4n+1) { transform: rotate(-2.5deg); }
+.realisations-grid .realisation-card:nth-child(4n+2) { transform: rotate(1.5deg); }
+.realisations-grid .realisation-card:nth-child(4n+3) { transform: rotate(-1.5deg); }
+.realisations-grid .realisation-card:nth-child(4n+4) { transform: rotate(2deg); }
+
+.realisations-grid .realisation-card:nth-child(5n+1) { --card-accent: #ff7043; }
+.realisations-grid .realisation-card:nth-child(5n+2) { --card-accent: #5ca0ff; }
+.realisations-grid .realisation-card:nth-child(5n+3) { --card-accent: #f2669e; }
+.realisations-grid .realisation-card:nth-child(5n+4) { --card-accent: #f5c24d; }
+.realisations-grid .realisation-card:nth-child(5n+5) { --card-accent: #4fd1c5; }
+
+.realisation-card:hover {
+    transform: rotate(0deg) translateY(-6px) scale(1.03);
+    box-shadow: 9px 9px 0 var(--card-accent, var(--accent));
+    z-index: 5;
+}
+
+.realisation-card::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff 0%, var(--card-accent, var(--accent)) 45%, rgba(0, 0, 0, 0.5) 100%);
+    border: 1px solid var(--ink);
+    z-index: 3;
 }
 
 .realisation-thumb {
     position: relative;
-    aspect-ratio: 4 / 3;
-    cursor: pointer;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
 }
 
@@ -205,11 +243,6 @@ h2 {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.2s;
-}
-
-.realisation-thumb:hover img {
-    transform: scale(1.05);
 }
 
 .play-icon {
@@ -217,29 +250,25 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(13, 13, 17, 0.7);
     border-radius: var(--radius-full);
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
     pointer-events: none;
 }
 
 .realisation-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-caption);
     font-weight: 700;
-    font-size: 1rem;
-    margin: 1rem 1rem 0.25rem;
-}
-
-.realisation-card p {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin: 0 1rem 1rem;
+    font-size: 1.35rem;
+    color: var(--ink);
+    text-align: center;
+    margin: 0.6rem 0 0;
 }
 
 .modal--lightbox {
@@ -252,6 +281,17 @@ h2 {
     height: auto;
     display: block;
     border-radius: var(--radius-sm);
+}
+
+.lightbox-text h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin: 1.25rem 0 0.25rem;
+}
+
+.lightbox-text p {
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 .lightbox-content iframe {

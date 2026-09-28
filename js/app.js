@@ -185,17 +185,14 @@ function renderRealisations(realisationsData) {
             thumb.appendChild(playIcon);
         }
 
-        thumb.addEventListener("click", function () {
-            ouvrirLightbox(realisation);
-        });
-
         const titre = document.createElement("h3");
         titre.textContent = realisation.titre;
 
-        const description = document.createElement("p");
-        description.textContent = realisation.description;
+        card.append(thumb, titre);
+        card.addEventListener("click", function () {
+            ouvrirLightbox(realisation);
+        });
 
-        card.append(thumb, titre, description);
         container.appendChild(card);
     });
 }
@@ -295,7 +292,18 @@ function ouvrirLightbox(realisation) {
         contenu.allowFullscreen = true;
     }
 
-    lightboxContent.replaceChildren(contenu);
+    const texte = document.createElement("div");
+    texte.className = "lightbox-text";
+
+    const titre = document.createElement("h3");
+    titre.textContent = realisation.titre;
+
+    const description = document.createElement("p");
+    description.textContent = realisation.description;
+
+    texte.append(titre, description);
+
+    lightboxContent.replaceChildren(contenu, texte);
     lightboxModal.hidden = false;
 }
 
