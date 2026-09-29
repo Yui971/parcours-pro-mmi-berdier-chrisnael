@@ -405,3 +405,22 @@ document.addEventListener("keydown", function (event) {
         }
     }
 });
+
+/* ==========================================================
+   BOUTON RETOUR EN HAUT
+   Apparaît seulement après avoir défilé un peu la page.
+   ========================================================== */
+
+const backToTopButton = document.getElementById("back-to-top");
+
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 400) {
+        backToTopButton.classList.add("is-visible");
+    } else {
+        backToTopButton.classList.remove("is-visible");
+    }
+});
+
+backToTopButton.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
